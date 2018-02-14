@@ -1,0 +1,6 @@
+framework module Pods_AWSChat {
+  umbrella header "Pods-AWSChat-umbrella.h"
+
+  export *
+  module * { export * }
+}

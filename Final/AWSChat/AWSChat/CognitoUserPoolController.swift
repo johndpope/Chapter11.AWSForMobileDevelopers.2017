@@ -9,17 +9,27 @@
 import Foundation
 import AWSCognitoIdentityProvider
 
+
+struct Cognito {
+    
+    static let clientId:String = "427t3qmiov6jpgn2uhsq4jf0sr" // AWS -> ctest4 -> App Integration / App client settings
+    static let CognitoIdentityUserPoolAppClientSecret:String =  "" // not configured nor used - nor known - should be nil
+    static let AWSCognitoUserPoolsSignInProviderKey:String = "UserPool"
+    
+    static let regionType: AWSRegionType = AWSRegionType.USEast2
+    static let poolId = "us-east-2_KXLsR1OcC"
+    static let identityPoolId = "us-east-2:f0250e4a-9f25-427e-ae7d-b04f78c199cd"
+    static let identityPoolRegion: AWSRegionType = AWSRegionType.USEast2
+    
+    
+}
+
+
+
+
 class CognitoUserPoolController {
     
-    //TO DO: Insert your Cognito user pool settings here
-    let userPoolRegion: AWSRegionType = .USEast1
-    let userPoolID = "your user pool id"
-    
-    //TO DO: Insert the client id and client secret for the App you created
-    // within the Cognito user pool.
-    let appClientID = "your app client id"
-    let appClientSecret = "your app client secret"
-    
+
     private var userPool:AWSCognitoIdentityUserPool?
     
     var currentUser:AWSCognitoIdentityUser? {
@@ -32,11 +42,11 @@ class CognitoUserPoolController {
     
     private init() {
         
-        let serviceConfiguration = AWSServiceConfiguration(region: userPoolRegion, credentialsProvider: nil)
+        let serviceConfiguration = AWSServiceConfiguration(region: Cognito.regionType, credentialsProvider: nil)
         
-        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: appClientID,
-                                                                        clientSecret: appClientSecret,
-                                                                        poolId: userPoolD)
+        let poolConfiguration = AWSCognitoIdentityUserPoolConfiguration(clientId: Cognito.clientId,
+                                                                        clientSecret: nil,
+                                                                        poolId: Cognito.poolId)
         
         AWSCognitoIdentityUserPool.register(with: serviceConfiguration,
                                             userPoolConfiguration: poolConfiguration,
